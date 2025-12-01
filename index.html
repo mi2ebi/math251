@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+  <style>
+    html {
+      font-family: "fira sans", "fira math", "noto sans", "arial", ui-sans-serif, sans-serif;
+      color: white;
+      background: black;
+      line-height: 1.5;
+    }
+
+    body {
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    math {
+      font-family: "fira math", math;
+    }
+
+    dfn {
+      font-style: normal;
+      color: pink;
+    }
+
+    em {
+      color: lightgreen;
+    }
+  </style>
+  <script src="temml/dist/temml.min.js"></script>
+</head>
+
+<body>
+  <h1 id="4">ch4 functions</h1>
+  <h2 id="41">4.1</h2>
+  <p>A relation \(f\) is a <dfn>function from \(A\) to \(B\)</dfn> if</p>
+  <ol>
+    <li>\(\operatorname{Dom}f=A\)</li>
+    <li>\((x, y)\in f\land(x, z)\in f\Rightarrow y=z\)<br />
+      <em>every input has exactly one output</em>
+    </li>
+  </ol>
+  <p>
+    If \(f\) is in fact a function we write \(f:A\to B\) and say "\(f\) maps \(A\) to \(B\)". The <dfn>codomain</dfn> is
+    \(B\) which might be a superset of \(\operatorname{Rng}f\). For example the range of \(f(x)=\cos x\) is \([-1,
+    1]\) but its codomain could be \(\mathbf R\) since \([-1, 1]\subseteq\mathbf R\).
+  </p>
+  <p>When \((x, y)\in f\) we can also write \(y=f(x)\) [but not "\(x\mathrel fy\)" even though it's a relation].</p>
+  <p>
+    To prove two functions \(f\) and \(g\) are equal, we can either use the fact that they're sets and prove that
+    \(f\subseteq g\) and \(g\subseteq f\), or show that \(\operatorname{Dom}f=\operatorname{Dom}g\) and \(\forall
+    x\in\operatorname{Dom}f\mathpunct: f(x)=g(x)\) <em>they map the same inputs to the same outputs</em>.
+  </p>
+  <h3>"useful" functions</h3>
+  <p>The <dfn>identity function</dfn> on \(A\) is the function \(I_A:A\to A\) defined as \(I_A(x)=x\).</p>
+  <p>
+    If \(A\subseteq B\) there is also the <dfn>inclusion function</dfn> \(i:A\to B\) which is the same thing [i.e.
+    \(\forall x\in A\mathpunct: I_A(x)=i(x)=x\)].
+  </p>
+  <p>If there is some universe \(U\), then for all \(A\subseteq U\) the <dfn>characteristic function of \(A\)</dfn>
+    \(\chi_A:U\to\{0, 1\}\) is</p>
+  <p>
+    \[
+    \forall x\in U\mathpunct: \chi_A(x)=\begin{cases}
+    1&\text{if }x\in A\\
+    0&\text{if }x\not\in A
+    \end{cases}
+    \]
+  </p>
+  <p>
+    The <dfn>floor function</dfn> \(\lfloor\mathord\cdot\rfloor:\mathbf R\to\mathbf Z\) maps each real number \(x\) to
+    its integer part, i.e. the greatest integer \(n\leq x\). \(\lfloor x\rfloor\) is like "always round down". Similarly
+    there's the <dfn>ceiling</dfn> \(\lceil x\rceil=\lfloor x\rfloor+1\).
+  </p>
+  <p>
+    If \(R\) is an equivalence relation on \(A\), the <dfn>canonical map</dfn> \(f:A\to A/R\) maps each \(a\in A\) to
+    its equivalence class \(\bar a\).
+  </p>
+  <p>
+    A function is <dfn>not well defined</dfn> if it isn't actually a function at all (e.g. if it fails the vertical line
+    test).
+  </p>
+  <h2 id="42">4.2 making new functions</h2>
+  <p>The <dfn>inverse</dfn> of a function \(f:A\to B\) is the function \(f^{-1}:B\to A\).</p>
+  <p>The <dfn>composition</dfn> of two functions \(f:A\to B\) and \(g:B\to C\) is the <b><i>relation</i></b></p>
+  <p>
+    \[
+    g\circ f=\set{(x, z)|\exists y\in B\mathpunct: (x, y)\in f\land(y, z)\in g}
+    \]
+  </p>
+  <p>
+    which is not guaranteed to be a function! To reduce confusion I like reading \(g\circ f\) as "\(g\) after \(f\)"
+    because you do \(g\) after you do \(f\). When giving \(g\circ f\) an input we can write either \([g\circ f](x)\) or
+    \(g(f(x))\).
+  </p>
+  <p>
+    Composition is not commutative: if they both even exist, \(g\circ f\) and \(f\circ g\) are not guaranteed to be the
+    same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\).Both of these are
+    consequences of functions being fancy relations.
+  </p>
+  <p>
+    If \(D\subseteq A\) the <dfn>restriction of \(f\) to \(D\)</dfn> is the function \(f|_D=\set{(x, y)\in f|x\in D}\).
+  </p>
+  <p>
+    A function \(f:A\to B\) is <dfn>increasing</dfn> if \(\forall x, y\in A\mathpunct: x&lt;y\Rightarrow f(x)&lt;f(y)\)
+    and <dfn>decreasing</dfn> if \(\forall x, y\in A\mathpunct: x&gt;y\Rightarrow f(x)&gt;f(y)\). If \(f\) is increasing
+    or decreasing it is <dfn>monotonic</dfn>.
+  </p>
+  <h2 id="43">4.3 injective and surjective functions</h2>
+  <p>
+    A function \(f:A\to B\) is <dfn>surjective</dfn> or <dfn>onto \(B\)</dfn> if \(\operatorname{Rng}f=B\). If \(f\) is
+    a surjection we write \(f:A\twoheadrightarrow B\) [or, if you really like the book,
+    \(f:A\stackrel{\text{onto}}{\to}B\)].
+  </p>
+  <p>
+    \(f\) is <dfn>injective</dfn> or <dfn>one-to-one</dfn> if \(\forall x, y\in A\mathpunct: f(x)=f(y)\Rightarrow x=y\)
+    <em>it passes the horizontal line test</em>. If \(f\) is an injection we write \(f:A\hookrightarrow B\) [or, if you
+    really like the book, \(f:A\stackrel{1-1}{\to}B\)].
+  </p>
+  <h2 id="44">4.4 inverse functions</h2>
+  <p>
+    \(f\) is <dfn>bijective</dfn> or a <dfn>one-to-one correspondence</dfn> if it is both injective and surjective. Only
+    bijective functions have inverses, but to prove \(f^{-1}\) is a function you only need to show that \(f\) is a
+    function and \(f\circ f^{-1}=I_B\) and \(f^{-1}\circ f=I_A\).
+  </p>
+  <p>If \(A\) is a nonempty set, a function \(p:A\to A\) is a <dfn>permutation of \(A\)</dfn> if it is bijective.</p>
+  <script>
+    temml.renderMathInElement(document.body);
+  </script>
+</body>
+
+</html>

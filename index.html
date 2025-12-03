@@ -6,13 +6,14 @@
   <meta name="format-detection" content="telephone=no" />
   <style>
     html {
-      font-family: "fira sans", "fira math", "noto sans", "arial", ui-sans-serif, sans-serif;
+      font-family: "fira sans", "fira math", "noto sans", ui-sans-serif, sans-serif;
       color: white;
       background: black;
       line-height: 1.5;
     }
 
     body {
+      padding: 8px;
       margin: 0 auto;
       max-width: 600px;
     }
@@ -26,22 +27,317 @@
       color: pink;
     }
 
+    i dfn {
+      font-style: italic;
+    }
+
     em {
       color: lightgreen;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-variant-numeric: tabular-nums;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid white;
+    }
+
+    code {
+      font-family: "iosevie", "iosevka", "consolas", "menlo", ui-monospace, monospace, monospace;
+      font-style: italic;
+      color: #dbf;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 4px 8px;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    th {
+      border-bottom: 1px solid white;
+    }
+
+    blockquote {
+      font-family: "source serif 4", "charis", "charter", "ibm plex serif", "noto serif", ui-serif, serif;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    blockquote math {
+      font-family: "stix two math", math;
+    }
+
+    a {
+      color: cyan;
     }
   </style>
   <script src="temml/dist/temml.min.js"></script>
 </head>
 
 <body>
-  <h1 id="4">ch4 functions</h1>
-  <h2 id="41">4.1</h2>
+  <h1 id="1">ch1 : logic and proofs</h1>
+  <h2 id="11">1.1 : propositions and connectives</h2>
+  <p>
+    A <dfn>proposition</dfn> is a <i>declarative sentence</i> that <i>is true or false</i>. For example, these
+    are propositions:
+  </p>
+  <ul>
+    <li>I am 19 years old. (This one's true)</li>
+    <li>Everyone enjoys this class. (This one's false)</li>
+    <li>There exists an animal with exactly 54 legs. (I don't know, but we could find out)</li>
+  </ul>
+  <p>and these are not:</p>
+  <ul>
+    <li>Do you like Star Trek? (This is a question)</li>
+    <li>*meows at you cutely* (This isn't a sentence)</li>
+    <li>The king of France is bald. (This is neither true nor false, because "the king of France" does not exist)</li>
+    <li>This sentence is false. (Or is it? *vsauce music*)</li>
+  </ul>
+  <p>We write "true" as \(\mathrm T\) and "false" as \(\mathrm F\).</p>
+  <p>(A <dfn>pr<b>e</b>position</dfn> is a word like "in" or "above" or "with".)</p>
+  <h3>operators / compound propositions</h3>
+  <p>The <dfn>negation</dfn> of a proposition \(p\) is \(\neg p\) "not \(p\)", which has the opposite truth value as
+    \(p\).</p>
+  <ul>
+    <li>I am <i>not</i> 19 years old. (\(\mathrm F\))</li>
+    <li><i>Not</i> everyone likes this class. (\(\mathrm T\))</li>
+    <li>There does <i>not</i> exist an animal with exactly 54 legs. (idk)</li>
+  </ul>
+  <p>We'll talk about why the middle one isn't "everyone <i>doesn't</i> like this class" <a href="#13">in a bit</a>.</p>
+  <p>If you negate \(p\) twice, i.e. \(\neg\neg p\), you get \(p\) again.</p>
+  <p>
+    The <dfn>conjunction</dfn> of \(p\) and \(q\), \(p\land q\) "\(p\) and \(q\)", is true only when \(p\) and \(q\)
+    are both true, and false otherwise. Their <dfn>disjunction</dfn>, \(p\lor q\) "\(p\) or \(q\)", is false only when
+    they're both false, and true otherwise (i.e. <em>it's true whenever at least one of them is true</em>). Importantly,
+    the disjunction represents "inclusive or" because they can both be true, not "exclusive or" which is what "or" does
+    in English a lot of the time ("do you want coffee or tea?" "both" "no we don't do that here").
+  </p>
+  <p>
+    A <dfn>contradiction</dfn> is always false no matter what input you give it, like \(p\land\neg p\) (\(p\) can't be
+    both true and false). A <dfn>tautology</dfn> is always <i>true</i> no matter what input you give it, like
+    \(p\lor\neg p\) (\(p\) is always either true or false).
+  </p>
+  <p>
+    \(\land\) and \(\lor\) are commutative and associative. <dfn>DeMorgan's laws</dfn> say that \(\neg(p\land
+    q)\equiv\neg p\lor\neg q\) and \(\neg(p\lor q)\equiv\neg p\land\neg q\).
+  </p>
+  <p>
+    The reason \(\neg p\lor q\equiv(\neg p)\land q\not\equiv\neg(p\land q)\) is because \(\neg\) has "lower
+    <dfn>scope</dfn>" or "higher <dfn>precedence</dfn>" than \(\lor\). Similarly, \(\land\) has lower scope than
+    \(\lor\). This is what keeps these formulas unambiguous. If you see something scary like
+  </p>
+  <p>
+    \[
+    p\land\neg q\lor\neg r\land s
+    \]
+  </p>
+  <p>you can figure out it's the same as</p>
+  <p>
+    \[
+    \Big(p\land(\neg q)\Big)\lor\Big((\neg r)\land s\Big)
+    \]
+  </p>
+  <h3>truth tables for these</h3>
+  <table>
+    <tr>
+      <th>\(p\)</th>
+      <th>\(q\)</th>
+      <th>\(\neg p\)</th>
+      <th>\(p\land q\)</th>
+      <th>\(p\lor q\)</th>
+    </tr>
+    <tr>
+      <td>T</td>
+      <td>T</td>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td>
+    </tr>
+    <tr>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+      <td>T</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td>
+      <td>F</td>
+      <td>T</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>F</td>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+    </tr>
+  </table>
+  <h2 id="12">1.2 : conditionals</h2>
+  <p>
+    The <dfn>conditional</dfn> \(p\Rightarrow q\) is false only when \(p\land\neg q\). Therefore it is true whenever,
+    and equivalent to, \(\neg p\lor q\). We can read the conditional as "if \(p\) then \(q\)" or "\(q\) if \(p\)" or
+    "\(p\) implies \(q\)". Again
+    this is not always how "if" works in English. If I text Kali and say <code>hey im in the library if u wanna
+      study</code> I might be in the library regardless of whether or not they want to come study with me. (💜)
+  </p>
+  <p>
+    The <dfn>converse</dfn> of \(p\Rightarrow q\) is \(q\Rightarrow p\), which is not always going to have the same
+    truth value. "If it rained, the ground is wet" does not imply "if the ground is wet, it rained": maybe there was a
+    sprinkler or something; "if a shape is a square, it has 4 sides" does not imply "if a shape has 4 sides, it is a
+    square", etc.
+  </p>
+  <p>
+    The <dfn>inverse</dfn> of \(p\Rightarrow q\) is \(\neg p\Rightarrow\neg q\), which also is not always equivalent as
+    the original. "If it rained, the ground is wet" does not imply "if it didn't rain, the ground is dry": maybe there
+    was, um, a sprinkler, or something, idk
+  </p>
+  <p>
+    The <dfn>contrapositive</dfn> of \(p\Rightarrow q\) is \(\neg q\Rightarrow\neg p\), which <i>is</i> always
+    equivalent to the original. "If it rained, the ground is wet" <i>does</i> imply "if the ground is dry, it didn't
+    rain"; "if a shape is a square, it has 4 sides" <i>does</i> imply "if a shape doesn't have 4 sides, it isn't a
+    square".
+  </p>
+  <p>
+    The <dfn>biconditional</dfn> \(p\Leftrightarrow q\) is true whenever \(p\) and \(q\) have the same truth value and
+    false otherwise. We read this "\(p\) if and only if \(q\)" or "\(p\) iff \(q\)". These are commonly seen as
+    definitions:
+  </p>
+  <blockquote>Two lines \(y=mx+b\) and \(y=nx+c\) are <dfn>perpendicular</dfn> iff \(mn=-1\).</blockquote>
+  <p>The biconditional is called that because it's two conditionals: \((p\Rightarrow q)\land(q\Rightarrow p)\).</p>
+  <p>\(\Leftrightarrow\) has higher scope than \(\Rightarrow\) which has higher scope than \(\lor\).</p>
+  <p>
+    \(\Leftrightarrow\) is commutative and associative, but not chaining:
+    \(p\Leftrightarrow q\Leftrightarrow r\) does not mean \((p\Leftrightarrow q)\land(q\Leftrightarrow r)\).
+  </p>
+  <p>
+    \(\Rightarrow\) is right-associative: \(p\Rightarrow q\Rightarrow r\) means \(p\Rightarrow(q\Rightarrow r)\).
+    Compare exponents: \(2^{3^4}=2^{\big(3^4\big)}\).
+  </p>
+  <h2 id="13">1.3 : quantifiers</h2>
+  <p>
+    A <dfn>predicate</dfn> is a sentence with <dfn>free variables</dfn>, like if I said "\(x\geq3\)" without telling you
+    what \(x\) is. This isn't a proposition because we can't determine if it's true or false. Because this predicate has
+    the variable \(x\) we could call it \(p(x)\). The <dfn>truth set</dfn> of \(p\) is the set of \(x\) for which
+    \(p(x)\) is true. To restrict what kinds of \(x\) we can give \(p\) (so we don't say silly things like
+    "\(\text{meow}\geq3\)") we need a <dfn>universe of discourse</dfn>. For \(p\) maybe our universe is \(\mathbf R\),
+    the reals.
+  </p>
+  <p>Two predicates \(p(x, ...)\) and \(q(x, ...)\) are <dfn>equivalent</dfn> if they have the same truth set.</p>
+  <p>
+    [In <a href="https://eecoppock.info/bootcamp/semantics-boot-camp.pdf" target="_blank">formal semantics</a> land they
+    don't like coming up with all these letters for predicates so they made the notation \(\lambda x\mathpunct. x\geq3\)
+    for <dfn>anonymous predicates</dfn>. This \(\lambda\) isn't a quantifier.]
+  </p>
+  <p>
+    Some sentences, such as "there exist an animal with exactly 54 legs", require us to go up to every animal and ask it
+    <code>hey animal do u have exactly 54 legs</code>, and then we can stop when/if any of them says <code>yea i do
+      :3</code>. To express
+    this we need the <dfn>existential quantifier</dfn> \(\exists\). We could write our sentence as
+  </p>
+  <p>
+    \[
+    \exists a\mathpunct. a\text{ has exactly 54 legs}
+    \]
+  </p>
+  <p>
+    but then we might accidentally ask some people (<code>no i have 2</code>) or chairs (<code>no&nbsp;i
+      have&nbsp;4</code>) or
+    integers (<code>what the fuck is a leg</code>), which would be a waste of time. We can fix this either by writing
+  </p>
+  <p>
+    \[
+    \exists a\mathpunct. a\text{ is an animal}\land a\text{ has exactly 54 legs}
+    \]
+  </p>
+  <p>or by restricting the domain of \(a\) to members of some universe \(A\) that only contains animals:</p>
+  <p>
+    \[
+    \exists a\in A\mathpunct. a\text{ has exactly 54 legs}
+    \]
+  </p>
+  <p>
+    This will be true whenever the truth set of the predicate is <i>not empty</i>. The quantifier <dfn>binds</dfn> the
+    variable \(a\). This can be read as "there exists an \(a\in A\) such that...".
+  </p>
+  <p>
+    Similarly to check whether or not "everyone likes math 251" we need to go up to everyone in the universe (of people
+    who are taking math 251) and ask them <code>hey do u like math 251</code>. This time, if anyone says
+    <code>no</code>, we can stop because we know the sentence is <i>false</i>. We write this with the <dfn>universal
+      quantifier</dfn> as
+  </p>
+  <p>
+    \[
+    \forall s\in M\mathpunct. s\text{ likes math 251}
+    \]
+  </p>
+  <p>
+    This will only be true when the truth set is <i>the entire universe</i>. It can be read as "for all \(s\in
+    M\),&nbsp;...".
+  </p>
+  <h3>quantifiers and scope</h3>
+  <p>
+    If a predicate with a bound variable contains any connectives besides \(\neg\), it needs parentheses. To say "all
+    integers are even or odd" we cannot write
+  </p>
+  <p>
+    \[
+    \forall \textcolor{yellow}z\in\mathbf Z\mathpunct. \textcolor{yellow}z\text{ is even}\lor \textcolor{#f99}z\text{ is
+    odd}
+    \]
+  </p>
+  <p>because the second \(z\) isn't bound by anything. Instead we need to write</p>
+  <p>
+    \[
+    \forall \textcolor{lime}z\in\mathbf Z\mathpunct. (\textcolor{lime}z\text{ is even}\lor \textcolor{lime}z\text{ is
+    odd})
+    \]
+  </p>
+  <h3>quantifiers and negation</h3>
+  <ul>
+    <li>\(\neg\forall x\mathpunct. p(x)\) <b>is not</b> equivalent to \(\exists x\mathpunct. p(x)\)</li>
+    <li>\(\neg\exists x\mathpunct. p(x)\) <b>is not</b> equivalent to \(\forall x\mathpunct. p(x)\)</li>
+  </ul>
+  <p>But</p>
+  <ul>
+    <li>
+      \(\neg\forall x\mathpunct. p(x)\) <b>is</b> equivalent to \(\exists x\mathpunct. \neg p(x)\) <em>think about it:
+        iff not all of them do it, at least one doesn't</em>
+    </li>
+    <li>
+      \(\neg\exists x\mathpunct. p(x)\) <b>is</b> equivalent to \(\forall x\mathpunct. \neg p(x)\) <em>think about it:
+        iff none of them do it, all of them don't</em>
+    </li>
+  </ul>
+  <p>And because \(p\Leftrightarrow\neg\neg p\)</p>
+  <ul>
+    <li>
+      \(\neg\forall x\mathpunct. \neg p(x)\) <b>is</b> equivalent to \(\exists x\mathpunct. p(x)\)
+    </li>
+    <li>
+      \(\neg\exists x\mathpunct. \neg p(x)\) <b>is</b> equivalent to \(\forall x\mathpunct. p(x)\)
+    </li>
+  </ul>
+  <!-- TODO uniq -->
+  <hr />
+  <h1 id="4">ch4 : functions</h1>
+  <h2 id="41">4.1 : what is function ?</h2>
   <p>A relation \(f\) is a <dfn>function from \(A\) to \(B\)</dfn> if</p>
   <ol>
     <li>\(\operatorname{Dom}f=A\)</li>
-    <li>\((x, y)\in f\land(x, z)\in f\Rightarrow y=z\)<br />
-      <em>every input has exactly one output</em>
-    </li>
+    <li>\((x, y)\in f\land(x, z)\in f\Rightarrow y=z\) <em>every input has exactly one output</em></li>
   </ol>
   <p>
     If \(f\) is in fact a function we write \(f:A\to B\) and say "\(f\) maps \(A\) to \(B\)". The <dfn>codomain</dfn> is
@@ -58,13 +354,13 @@
   <p>The <dfn>identity function</dfn> on \(A\) is the function \(I_A:A\to A\) defined as \(I_A(x)=x\).</p>
   <p>
     If \(A\subseteq B\) there is also the <dfn>inclusion function</dfn> \(i:A\to B\) which is the same thing [i.e.
-    \(\forall x\in A\mathpunct: I_A(x)=i(x)=x\)].
+    \(\forall x\in A\mathpunct. I_A(x)=i(x)=x\)].
   </p>
   <p>If there is some universe \(U\), then for all \(A\subseteq U\) the <dfn>characteristic function of \(A\)</dfn>
     \(\chi_A:U\to\{0, 1\}\) is</p>
   <p>
     \[
-    \forall x\in U\mathpunct: \chi_A(x)=\begin{cases}
+    \forall x\in U\mathpunct. \chi_A(x)=\begin{cases}
     1&\text{if }x\in A\\
     0&\text{if }x\not\in A
     \end{cases}
@@ -83,12 +379,12 @@
     A function is <dfn>not well defined</dfn> if it isn't actually a function at all (e.g. if it fails the vertical line
     test).
   </p>
-  <h2 id="42">4.2 making new functions</h2>
+  <h2 id="42">4.2 : making new functions</h2>
   <p>The <dfn>inverse</dfn> of a function \(f:A\to B\) is the function \(f^{-1}:B\to A\).</p>
   <p>The <dfn>composition</dfn> of two functions \(f:A\to B\) and \(g:B\to C\) is the <b><i>relation</i></b></p>
   <p>
     \[
-    g\circ f=\set{(x, z)|\exists y\in B\mathpunct: (x, y)\in f\land(y, z)\in g}
+    g\circ f=\set{(x, z)|\exists y\in B\mathpunct. (x, y)\in f\land(y, z)\in g}
     \]
   </p>
   <p>
@@ -105,11 +401,11 @@
     If \(D\subseteq A\) the <dfn>restriction of \(f\) to \(D\)</dfn> is the function \(f|_D=\set{(x, y)\in f|x\in D}\).
   </p>
   <p>
-    A function \(f:A\to B\) is <dfn>increasing</dfn> if \(\forall x, y\in A\mathpunct: x&lt;y\Rightarrow f(x)&lt;f(y)\)
-    and <dfn>decreasing</dfn> if \(\forall x, y\in A\mathpunct: x&gt;y\Rightarrow f(x)&gt;f(y)\). If \(f\) is increasing
+    A function \(f:A\to B\) is <dfn>increasing</dfn> if \(\forall x, y\in A\mathpunct. x&lt;y\Rightarrow f(x)&lt;f(y)\)
+    and <dfn>decreasing</dfn> if \(\forall x, y\in A\mathpunct. x&gt;y\Rightarrow f(x)&gt;f(y)\). If \(f\) is increasing
     or decreasing it is <dfn>monotonic</dfn>.
   </p>
-  <h2 id="43">4.3 injective and surjective functions</h2>
+  <h2 id="43">4.3 : injective and surjective functions</h2>
   <p>
     A function \(f:A\to B\) is <dfn>surjective</dfn> or <dfn>onto \(B\)</dfn> if \(\operatorname{Rng}f=B\). If \(f\) is
     a surjection we write \(f:A\twoheadrightarrow B\) [or, if you really like the book,
@@ -120,7 +416,7 @@
     <em>it passes the horizontal line test</em>. If \(f\) is an injection we write \(f:A\hookrightarrow B\) [or, if you
     really like the book, \(f:A\stackrel{1-1}{\to}B\)].
   </p>
-  <h2 id="44">4.4 inverse functions</h2>
+  <h2 id="44">4.4 : inverse functions</h2>
   <p>
     \(f\) is <dfn>bijective</dfn> or a <dfn>one-to-one correspondence</dfn> if it is both injective and surjective. Only
     bijective functions have inverses, but to prove \(f^{-1}\) is a function you only need to show that \(f\) is a
@@ -128,7 +424,7 @@
   </p>
   <p>If \(A\) is a nonempty set, a function \(p:A\to A\) is a <dfn>permutation of \(A\)</dfn> if it is bijective.</p>
   <script>
-    temml.renderMathInElement(document.body);
+    temml.renderMathInElement(document.body, {trust: true});
   </script>
 </body>
 

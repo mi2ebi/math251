@@ -178,6 +178,10 @@
     a {
       color: cyan;
     }
+
+    a.redlink {
+      color: #f66;
+    }
   </style>
   <script src="temml/dist/temml.min.js"></script>
 </head>
@@ -205,7 +209,14 @@
           <li value="6"><a href="#26">counting</a></li>
         </ol>
       </li>
-      <li value="4"> <a href="#4">functions</a>
+      <li><a href="#3" class="redlink">relations</a>
+        <ol>
+          <li><a href="#31" class="redlink">what is relation ?</a></li>
+          <li><a href="#32" class="redlink">equivalence relations</a></li>
+          <li><a href="#33" class="redlink">partitions</a></li>
+        </ol>
+      </li>
+      <li> <a href="#4">functions</a>
         <ol>
           <li><a href="#41">what is function ?</a></li>
           <li><a href="#42">making new functions</a></li>
@@ -257,7 +268,8 @@
       q)\equiv\neg p\lor\neg q\) and \(\neg(p\lor q)\equiv\neg p\land\neg q\). </p>
     <p> The reason \(\neg p\land q\equiv(\neg p)\land q\not\equiv\neg(p\land q)\) is because \(\neg\) has "lower
       <dfn>scope</dfn>" or "higher <dfn>precedence</dfn>" than \(\lor\). Similarly, \(\land\) has lower scope than
-      \(\lor\). This is what keeps these formulas unambiguous. If you see something scary like </p>
+      \(\lor\). This is what keeps these formulas unambiguous. If you see something scary like
+    </p>
     <p> \[ p\land\neg q\lor\neg r\land s \] </p>
     <p>you can figure out it's the same as</p>
     <p> \[ \Big(p\land(\neg q)\Big)\lor\Big((\neg r)\land s\Big) \] </p>
@@ -573,7 +585,8 @@
       \(n\) is \(\frac{n!}{(n-r)!}\).</p>
     <p>A <dfn>conmbination of \(n\) elements taken \(r\) at a time</dfn> is a subset that has \(r\) elements made from a
       set with \(n\) elements. Because it is a subset, order does not matter. The number of combinations is the
-      <dfn>binomial</dfn> \(n\choose r\) "\(n\) choose \(r\)" \(=\frac{n!}{r!(n-r)!}\). </p>
+      <dfn>binomial</dfn> \(n\choose r\) "\(n\) choose \(r\)" \(=\frac{n!}{r!(n-r)!}\).
+    </p>
     <p><dfn>The chairperson identity</dfn>: \(r{n\choose r}=n{n-1\choose r-1}\) </p>
     <p>The binomial is useful for expanding \((a+b)^n=\sum_{r=0}^n{n\choose r}a^rb^{n-r}\).</p>
   </section>
@@ -588,7 +601,8 @@
     </ul>
     <p> If \(f\) is in fact a function we write \(f:A\to B\) and say "\(f\) maps \(A\) to \(B\)". The
       <dfn>codomain</dfn> is \(B\) which might be a superset of \(\operatorname{Rng}f\). For example the range of
-      \(f(x)=\cos x\) is \([-1, 1]\) but its codomain could be \(\mathbf R\) since \([-1, 1]\subseteq\mathbf R\). </p>
+      \(f(x)=\cos x\) is \([-1, 1]\) but its codomain could be \(\mathbf R\) since \([-1, 1]\subseteq\mathbf R\).
+    </p>
     <p>When \((x, y)\in f\) we can also write \(y=f(x)\) [but not "\(x\mathrel fy\)" even though it's a relation].</p>
     <p> To prove two functions \(f\) and \(g\) are equal, we can either use the fact that they're sets and prove that
       \(f\subseteq g\) and \(g\subseteq f\), or show that \(\operatorname{Dom}f=\operatorname{Dom}g\) and \(\forall

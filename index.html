@@ -209,10 +209,10 @@
           <li value="6"><a href="#26">counting</a></li>
         </ol>
       </li>
-      <li><a href="#3" class="redlink">relations</a>
+      <li><a href="#3">relations</a>
         <ol>
-          <li><a href="#31" class="redlink">what is relation ?</a></li>
-          <li><a href="#32" class="redlink">equivalence relations</a></li>
+          <li><a href="#31">what is relation ?</a></li>
+          <li><a href="#32">equivalence relations</a></li>
           <li><a href="#33" class="redlink">partitions</a></li>
         </ol>
       </li>
@@ -591,6 +591,39 @@
     <p>The binomial is useful for expanding \((a+b)^n=\sum_{r=0}^n{n\choose r}a^rb^{n-r}\).</p>
   </section>
   <hr />
+  <h1 id="3"><code>3</code> relations</h1>
+  <section>
+    <h2 id="31"><code>3.1</code> what is relation ?</h2>
+    <p>A <dfn>relation from \(A\) to \(B\)</dfn> is a subset \(R\) of \(A\times B\). A relation from \(A\) to \(A\) is
+      called a <dfn>relation on \(A\)</dfn>. If \((a, b)\in R\) we say \(a\) is \(R\)-related to \(b\) and write
+      \(a\mathrel Rb\). If \((a, b)\not\in R\) we write \(a\mathrel{\cancel R}b\).</p>
+    <p>The <dfn>identity relation</dfn> on \(A\) is the set \(I_A=\set{(a, a):a\in A}\).</p>
+    <p>The <dfn>domain</dfn> of \(R\) is the set \(\operatorname{Dom}R=\set{x\in A:\exists y\in B\mathpunct. x\mathrel R
+      y}\). The <dfn>range</dfn> is the set \(\operatorname{Rng}R=\set{y\in B:\exists x\in A\mathpunct.x\mathrel R y}\).
+      I am sad that they didn't decide to call it \(\operatorname{Sub}R\) instead.</p>
+    <p>The <dfn>inverse</dfn> of a relation \(R\) is the relation \(R^{-1}=\set{(y, x):x\mathrel Ry}\).</p>
+    <p>The <dfn>composition</dfn> of \(R\) and \(S\) is the relation \(S\circ R\) from \(A\) to \(C\) defined by
+      \(\set{(a, c):\exists b\in B\mathpunct. (a\mathrel Rb\land b\mathrel Sc)}\). To reduce confusion I like reading
+      \(S\circ R\) as "\(S\) after \(R\)".</p>
+    <p>A <dfn>digraph</dfn> is a diagram of a relation. Here is a digraph of some relation I made up.</p>
+    <p style="text-align: center;"><img src="imgs/digraph.png" /></p>
+  </section>
+  <section>
+    <h2 id="32"><code>3.2</code> equivalence relations</h2>
+    <p>Consider some relation \(R\) on \(A\). \(R\) is</p>
+    <ul>
+      <li><dfn>reflexive</dfn> if \(\forall x\in A\mathpunct.x\mathrel Rx\)</li>
+      <li><dfn>symmetric</dfn> if \(\forall x, y\in A\mathpunct.x\mathrel Ry\Rightarrow y\mathrel Rx\)</li>
+      <li><dfn>transitive</dfn> if \(\forall x, y, z\in A\mathpunct.x\mathrel Ry\land y\mathrel Rz\Rightarrow x\mathrel
+        Rz\)</li>
+      <li>an <dfn>equivalence relation</dfn> if it's all three</li>
+    </ul>
+    <p>The <dfn>equivalence class of \(x\) mod \(R\)</dfn> is the set \(\bar x=[x]=x/R=\set{y\in A:x\mathrel Ry}\).</p>
+    <p>An integer \(x\)<dfn>\(\equiv y\text{ (mod $m$)}\)</dfn> if \(m\mid(x-y)\). The set of equivalence classes for
+      congruence modulo \(m\) is \(\mathbf Z_m\). For example \(\mathbf Z_4\) contains the equivalence class \(\bar1\)
+      which has every integer one more than a multiple of four.</p>
+  </section>
+  <hr />
   <h1 id="4"><code>4</code> functions</h1>
   <section>
     <h2 id="41"><code>4.1</code> what is function ?</h2>
@@ -628,9 +661,8 @@
     <p>The <dfn>inverse</dfn> of a function \(f:A\to B\) is the function \(f^{-1}:B\to A\).</p>
     <p>The <dfn>composition</dfn> of two functions \(f:A\to B\) and \(g:B\to C\) is the <b><i>relation</i></b> </p>
     <p> \[ g\circ f=\set{(x, z):\exists y\in B\mathpunct. (x, y)\in f\land(y, z)\in g} \] </p>
-    <p> which is not guaranteed to be a function! To reduce confusion I like reading \(g\circ f\) as "\(g\) after \(f\)"
-      because you do \(g\) after you do \(f\). When giving \(g\circ f\) an input we can write either \([g\circ f](x)\)
-      or \(g(f(x))\). </p>
+    <p> which is not guaranteed to be a function! When giving \(g\circ f\) an input we can write either \([g\circ
+      f](x)\) or \(g(f(x))\). </p>
     <p> Composition is not commutative: if they both even exist, \(g\circ f\) and \(f\circ g\) are not guaranteed to be
       the same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\).Both of these
       are consequences of functions being fancy relations. </p>

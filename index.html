@@ -257,8 +257,7 @@
       q)\equiv\neg p\lor\neg q\) and \(\neg(p\lor q)\equiv\neg p\land\neg q\). </p>
     <p> The reason \(\neg p\land q\equiv(\neg p)\land q\not\equiv\neg(p\land q)\) is because \(\neg\) has "lower
       <dfn>scope</dfn>" or "higher <dfn>precedence</dfn>" than \(\lor\). Similarly, \(\land\) has lower scope than
-      \(\lor\). This is what keeps these formulas unambiguous. If you see something scary like
-    </p>
+      \(\lor\). This is what keeps these formulas unambiguous. If you see something scary like </p>
     <p> \[ p\land\neg q\lor\neg r\land s \] </p>
     <p>you can figure out it's the same as</p>
     <p> \[ \Big(p\land(\neg q)\Big)\lor\Big((\neg r)\land s\Big) \] </p>
@@ -522,10 +521,10 @@
     <p>A <dfn>family</dfn> is a set of sets. Families are given cursive capital letters as names, like \(\mathscr A\).
     </p>
     <p>The <dfn>union over \(\mathcal A\)</dfn> is \(\bigcup_{\textcolor{green}A\in\mathscr
-      A}\textcolor{green}A=\set{x:\exists\textcolor{SkyBlue}A\in\mathscr A\mathpunct.
-      x\in\textcolor{SkyBlue}A}\). Note that the two regular \(A\)s on each side of that are doing different things.
-      \(\textcolor{green}{\text{One}}\) is acting as a
-      dummy variable for the \(\bigcup\), \(\textcolor{SkyBlue}{\text{the other}}\) is bound by the \(\exists\).</p>
+      A}\textcolor{green}A=\set{x:\exists\textcolor{SkyBlue}A\in\mathscr A\mathpunct. x\in\textcolor{SkyBlue}A}\). Note
+      that the two regular \(A\)s on each side of that are doing different things. \(\textcolor{green}{\text{One}}\) is
+      acting as a dummy variable for the \(\bigcup\), \(\textcolor{SkyBlue}{\text{the other}}\) is bound by the
+      \(\exists\).</p>
     <p>Likewise the <dfn>intersection over \(\mathcal A\)</dfn> is \(\bigcup_{A\in\mathscr A}A=\set{x:\forall
       A\in\mathscr A\mathpunct. x\in A}\).</p>
   </section>
@@ -549,32 +548,22 @@
     <p>A set is <dfn>inductive</dfn> if it only meets requirement 2. For example \(\set{5, 6, 7, ...}\) is inductive.
     </p>
     <h3>proving stuff inductively</h3>
-    <blockquote>
-      <b>Proof.</b><br />
-      1. verify the property \(p(n)\) for \(n=1\)<br />
-      2. magically assume \(p(n)\) is true for all \(n\leq k\)<br />
-      3. prove \(p(k+1)\)<br />
-      Therefore, \(\forall n\in\mathbf N\mathpunct. p(n)\).
+    <blockquote> <b>Proof.</b><br /> 1. verify the property \(p(n)\) for \(n=1\)<br /> 2. magically assume \(p(n)\) is
+      true for all \(n\leq k\)<br /> 3. prove \(p(k+1)\)<br /> Therefore, \(\forall n\in\mathbf N\mathpunct. p(n)\).
     </blockquote>
   </section>
   <section>
     <h2 id="26"><code>2.6</code> counting</h2>
     <p>The <dfn>cardinality</dfn> of a set \(A\), which is written \(\operatorname{card}A\) or \(|A|\) or \(\#A\) or
       \(\bar{\bar A}\), is the number of elements it has.</p>
-    <p><dfn>The sum rule (for two sets)</dfn><br />
-      If \(|A|=m\) and \(|B|=n\), \(|A\cup B|=m+n-|A\cap B|\).
-    </p>
-    <p><dfn>Inclusion-exclusion principle</dfn><br />
-      When finding the cardinality of the union of the \(n\) sets in a family \(\mathscr A\), you <i>include</i> all the
-      members of each set in \(\mathscr A\), <i>exclude</i> the pairwise intersections, <i>include</i> the 3tuplewise
-      intersections, etc.</p>
-    <p>\[
-      \left|\bigcup_{i=1}^n A_i\right|=\sum_{j=1}^n\left((-1)^{j+1}\sum_{|S|=j}\left|\bigcap_{k\in
-      S}A_k\right|\right)\quad\text{with each }S\subseteq\set{k\in\mathbf N:k\leq n}
-      \]</p>
-    <p><dfn>The product rule</dfn><br />
-      The cardinality of the cross product \(A_1\times A_2\times\cdots\times A_n\) is \(\prod_{i=1}^n|A_i|\).
-    </p>
+    <p><dfn>The sum rule (for two sets)</dfn><br /> If \(|A|=m\) and \(|B|=n\), \(|A\cup B|=m+n-|A\cap B|\). </p>
+    <p><dfn>Inclusion-exclusion principle</dfn><br /> When finding the cardinality of the union of the \(n\) sets in a
+      family \(\mathscr A\), you <i>include</i> all the members of each set in \(\mathscr A\), <i>exclude</i> the
+      pairwise intersections, <i>include</i> the 3tuplewise intersections, etc.</p>
+    <p>\[ \left|\bigcup_{i=1}^n A_i\right|=\sum_{j=1}^n\left((-1)^{j+1}\sum_{|S|=j}\left|\bigcap_{k\in
+      S}A_k\right|\right)\quad\text{with each }S\subseteq\set{k\in\mathbf N:k\leq n} \]</p>
+    <p><dfn>The product rule</dfn><br /> The cardinality of the cross product \(A_1\times A_2\times\cdots\times A_n\) is
+      \(\prod_{i=1}^n|A_i|\). </p>
     <p>A <dfn>permutation</dfn> of a set is an arrangement of its elements in a specific order. The number of
       permutations of a set with \(n\) elements is \(n!\) "\(n\) <dfn>factorial</dfn>" \(=\prod_{i=1}^ni\).</p>
     <p>[The factorial can be extended to the complex numbers via \(x!=\Gamma(x+1)\) using the gamma function
@@ -584,11 +573,8 @@
       \(n\) is \(\frac{n!}{(n-r)!}\).</p>
     <p>A <dfn>conmbination of \(n\) elements taken \(r\) at a time</dfn> is a subset that has \(r\) elements made from a
       set with \(n\) elements. Because it is a subset, order does not matter. The number of combinations is the
-      <dfn>binomial</dfn> \(n\choose
-      r\) "\(n\) choose \(r\)" \(=\frac{n!}{r!(n-r)!}\).
-    </p>
-    <p><dfn>The chairperson identity</dfn>: \(r{n\choose r}=n{n-1\choose r-1}\)
-    </p>
+      <dfn>binomial</dfn> \(n\choose r\) "\(n\) choose \(r\)" \(=\frac{n!}{r!(n-r)!}\). </p>
+    <p><dfn>The chairperson identity</dfn>: \(r{n\choose r}=n{n-1\choose r-1}\) </p>
     <p>The binomial is useful for expanding \((a+b)^n=\sum_{r=0}^n{n\choose r}a^rb^{n-r}\).</p>
   </section>
   <hr />
@@ -601,95 +587,60 @@
       <li>\((x, y)\in f\land(x, z)\in f\Rightarrow y=z\) <em>every input has exactly one output</em></li>
     </ul>
     <p> If \(f\) is in fact a function we write \(f:A\to B\) and say "\(f\) maps \(A\) to \(B\)". The
-      <dfn>codomain</dfn> is \(B\) which might be a superset of \(\operatorname{Rng}f\). For example the range
-      of
-      \(f(x)=\cos x\) is \([-1, 1]\) but its codomain could be \(\mathbf R\) since \([-1, 1]\subseteq\mathbf
-      R\).
-    </p>
-    <p>When \((x, y)\in f\) we can also write \(y=f(x)\) [but not "\(x\mathrel fy\)" even though it's a
-      relation].</p>
-    <p> To prove two functions \(f\) and \(g\) are equal, we can either use the fact that they're sets and prove
-      that
-      \(f\subseteq g\) and \(g\subseteq f\), or show that \(\operatorname{Dom}f=\operatorname{Dom}g\) and
-      \(\forall
+      <dfn>codomain</dfn> is \(B\) which might be a superset of \(\operatorname{Rng}f\). For example the range of
+      \(f(x)=\cos x\) is \([-1, 1]\) but its codomain could be \(\mathbf R\) since \([-1, 1]\subseteq\mathbf R\). </p>
+    <p>When \((x, y)\in f\) we can also write \(y=f(x)\) [but not "\(x\mathrel fy\)" even though it's a relation].</p>
+    <p> To prove two functions \(f\) and \(g\) are equal, we can either use the fact that they're sets and prove that
+      \(f\subseteq g\) and \(g\subseteq f\), or show that \(\operatorname{Dom}f=\operatorname{Dom}g\) and \(\forall
       x\in\operatorname{Dom}f\mathpunct: f(x)=g(x)\) <em>they map the same inputs to the same outputs</em>. </p>
     <h3>"useful" functions</h3>
     <p>The <dfn>identity function</dfn> on \(A\) is the function \(I_A:A\to A\) defined as \(I_A(x)=x\).</p>
-    <p> If \(A\subseteq B\) there is also the <dfn>inclusion function</dfn> \(i:A\to B\) which is the same thing
-      [i.e.
+    <p> If \(A\subseteq B\) there is also the <dfn>inclusion function</dfn> \(i:A\to B\) which is the same thing [i.e.
       \(\forall x\in A\mathpunct. I_A(x)=i(x)=x\)]. </p>
-    <p>If there is some universe \(U\), then for all \(A\subseteq U\) the <dfn>characteristic function of
-        \(A\)</dfn>
+    <p>If there is some universe \(U\), then for all \(A\subseteq U\) the <dfn>characteristic function of \(A\)</dfn>
       \(\chi_A:U\to\{0, 1\}\) is</p>
-    <p> \[ \forall x\in U\mathpunct. \chi_A(x)=\begin{cases} 1&\text{if }x\in A\\ 0&\text{if }x\not\in A
-      \end{cases}
-      \]
+    <p> \[ \forall x\in U\mathpunct. \chi_A(x)=\begin{cases} 1&\text{if }x\in A\\ 0&\text{if }x\not\in A \end{cases} \]
     </p>
-    <p> The <dfn>floor function</dfn> \(\lfloor\mathord\cdot\rfloor:\mathbf R\to\mathbf Z\) maps each real
-      number
-      \(x\)
-      to its integer part, i.e. the greatest integer \(n\leq x\). \(\lfloor x\rfloor\) is like "always round
-      down".
+    <p> The <dfn>floor function</dfn> \(\lfloor\mathord\cdot\rfloor:\mathbf R\to\mathbf Z\) maps each real number \(x\)
+      to its integer part, i.e. the greatest integer \(n\leq x\). \(\lfloor x\rfloor\) is like "always round down".
       Similarly there's the <dfn>ceiling</dfn> \(\lceil x\rceil=\lfloor x\rfloor+1\). </p>
-    <p> If \(R\) is an equivalence relation on \(A\), the <dfn>canonical map</dfn> \(f:A\to A/R\) maps each
-      \(a\in A\)
+    <p> If \(R\) is an equivalence relation on \(A\), the <dfn>canonical map</dfn> \(f:A\to A/R\) maps each \(a\in A\)
       to its equivalence class \(\bar a\). </p>
-    <p> A function is <dfn>not well defined</dfn> if it isn't actually a function at all (e.g. if it fails the
-      vertical
+    <p> A function is <dfn>not well defined</dfn> if it isn't actually a function at all (e.g. if it fails the vertical
       line test). </p>
   </section>
   <section>
     <h2 id="42"><code>4.2</code> making new functions</h2>
     <p>The <dfn>inverse</dfn> of a function \(f:A\to B\) is the function \(f^{-1}:B\to A\).</p>
-    <p>The <dfn>composition</dfn> of two functions \(f:A\to B\) and \(g:B\to C\) is the <b><i>relation</i></b>
-    </p>
+    <p>The <dfn>composition</dfn> of two functions \(f:A\to B\) and \(g:B\to C\) is the <b><i>relation</i></b> </p>
     <p> \[ g\circ f=\set{(x, z):\exists y\in B\mathpunct. (x, y)\in f\land(y, z)\in g} \] </p>
-    <p> which is not guaranteed to be a function! To reduce confusion I like reading \(g\circ f\) as "\(g\)
-      after
-      \(f\)"
-      because you do \(g\) after you do \(f\). When giving \(g\circ f\) an input we can write either \([g\circ
-      f](x)\)
+    <p> which is not guaranteed to be a function! To reduce confusion I like reading \(g\circ f\) as "\(g\) after \(f\)"
+      because you do \(g\) after you do \(f\). When giving \(g\circ f\) an input we can write either \([g\circ f](x)\)
       or \(g(f(x))\). </p>
-    <p> Composition is not commutative: if they both even exist, \(g\circ f\) and \(f\circ g\) are not
-      guaranteed to
-      be
-      the same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\).Both
-      of
-      these
+    <p> Composition is not commutative: if they both even exist, \(g\circ f\) and \(f\circ g\) are not guaranteed to be
+      the same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\).Both of these
       are consequences of functions being fancy relations. </p>
-    <p> If \(D\subseteq A\) the <dfn>restriction of \(f\) to \(D\)</dfn> is the function \(f|_D=\set{(x, y)\in
-      f:x\in
+    <p> If \(D\subseteq A\) the <dfn>restriction of \(f\) to \(D\)</dfn> is the function \(f|_D=\set{(x, y)\in f:x\in
       D}\). </p>
     <p> A function \(f:A\to B\) is <dfn>increasing</dfn> if \(\forall x, y\in A\mathpunct. x&lt;y\Rightarrow
-      f(x)&lt;f(y)\) and <dfn>decreasing</dfn> if \(\forall x, y\in A\mathpunct. x&gt;y\Rightarrow
-      f(x)&gt;f(y)\). If
+      f(x)&lt;f(y)\) and <dfn>decreasing</dfn> if \(\forall x, y\in A\mathpunct. x&gt;y\Rightarrow f(x)&gt;f(y)\). If
       \(f\) is increasing or decreasing it is <dfn>monotonic</dfn>. </p>
   </section>
   <section>
     <h2 id="43"><code>4.3</code> injective and surjective functions</h2>
-    <p> A function \(f:A\to B\) is <dfn>surjective</dfn> or <dfn>onto \(B\)</dfn> if \(\operatorname{Rng}f=B\).
-      If
-      \(f\)
+    <p> A function \(f:A\to B\) is <dfn>surjective</dfn> or <dfn>onto \(B\)</dfn> if \(\operatorname{Rng}f=B\). If \(f\)
       is a surjection we write \(f:A\twoheadrightarrow B\) [or, if you really like the book,
       \(f:A\stackrel{\text{onto}}{\to}B\)]. </p>
-    <p> \(f\) is <dfn>injective</dfn> or <dfn>one-to-one</dfn> if \(\forall x, y\in A\mathpunct:
-      f(x)=f(y)\Rightarrow
-      x=y\) <em>it passes the horizontal line test</em>. If \(f\) is an injection we write \(f:A\hookrightarrow
-      B\)
-      [or,
+    <p> \(f\) is <dfn>injective</dfn> or <dfn>one-to-one</dfn> if \(\forall x, y\in A\mathpunct: f(x)=f(y)\Rightarrow
+      x=y\) <em>it passes the horizontal line test</em>. If \(f\) is an injection we write \(f:A\hookrightarrow B\) [or,
       if you really like the book, \(f:A\stackrel{1-1}{\to}B\)]. </p>
   </section>
   <section>
     <h2 id="44"><code>4.4</code> inverse functions</h2>
-    <p>\(f\) is <dfn>bijective</dfn> or a <dfn>one-to-one correspondence</dfn> if it is both injective and
-      surjective.
-      Only bijective functions have inverses, but to prove \(f^{-1}\) is a function you only need to show that
-      \(f\)
-      is
+    <p>\(f\) is <dfn>bijective</dfn> or a <dfn>one-to-one correspondence</dfn> if it is both injective and surjective.
+      Only bijective functions have inverses, but to prove \(f^{-1}\) is a function you only need to show that \(f\) is
       a function and \(f\circ f^{-1}=I_B\) and \(f^{-1}\circ f=I_A\). </p>
-    <p>If \(A\) is a nonempty set, a function \(p:A\to A\) is a <dfn>permutation of \(A\)</dfn> if it is
-      bijective.
-    </p>
+    <p>If \(A\) is a nonempty set, a function \(p:A\to A\) is a <dfn>permutation of \(A\)</dfn> if it is bijective. </p>
   </section>
   <script> temml.renderMathInElement(document.body, {trust: true}); </script>
 </body>

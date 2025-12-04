@@ -104,8 +104,6 @@
 
     math {
       font-family: "fira math", "stix two math", math;
-      < !-- font-family: "fira math", math;
-      -->
     }
 
     dfn {
@@ -213,7 +211,7 @@
         <ol>
           <li><a href="#31">what is relation ?</a></li>
           <li><a href="#32">equivalence relations</a></li>
-          <li><a href="#33" class="redlink">partitions</a></li>
+          <li><a href="#33">partitions</a></li>
         </ol>
       </li>
       <li> <a href="#4">functions</a>
@@ -623,6 +621,15 @@
       congruence modulo \(m\) is \(\mathbf Z_m\). For example \(\mathbf Z_4\) contains the equivalence class \(\bar1\)
       which has every integer one more than a multiple of four.</p>
   </section>
+  <section>
+    <h2 id="33"><code>3.3</code> partitions</h2>
+    <p>A <dfn>partition</dfn> \(P\) of \(A\) is a set of subsets of \(A\) where</p>
+    <ul>
+      <li>none of the elements are \(\emptyset\)</li>
+      <li>if \(X\in P\) and \(Y\in P\), either \(X=Y\) or \(X\cap Y=\emptyset\)</li>
+      <li>\(bigcup_{X\in P}X=A\)</li>
+    </ul>
+  </section>
   <hr />
   <h1 id="4"><code>4</code> functions</h1>
   <section>
@@ -664,7 +671,7 @@
     <p> which is not guaranteed to be a function! When giving \(g\circ f\) an input we can write either \([g\circ
       f](x)\) or \(g(f(x))\). </p>
     <p> Composition is not commutative: if they both even exist, \(g\circ f\) and \(f\circ g\) are not guaranteed to be
-      the same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\).Both of these
+      the same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\). Both of these
       are consequences of functions being fancy relations. </p>
     <p> If \(D\subseteq A\) the <dfn>restriction of \(f\) to \(D\)</dfn> is the function \(f|_D=\set{(x, y)\in f:x\in
       D}\). </p>

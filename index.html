@@ -164,8 +164,7 @@
 
     h1,
     h2,
-    h3,
-    li {
+    h3 {
       text-wrap: balance;
     }
 
@@ -192,6 +191,14 @@
           <li><a href="#14">proofs (1)</a></li>
           <li><a href="#15">proofs (2)</a></li>
           <li><a href="#16">proofs involving quantifiers</a></li>
+        </ol>
+      </li>
+      <li> <a href="#2">sets and induction</a>
+        <ol>
+          <li><a href="#21">set theory</a></li>
+          <li><a href="#22">set operations</a></li>
+          <li><a href="#23">set families</a></li>
+          <li><a href="#24">induction</a></li>
         </ol>
       </li>
       <li value="4"> <a href="#4">functions</a>
@@ -363,7 +370,9 @@
     <p>Two predicates \(p(x, ...)\) and \(q(x, ...)\) are <dfn>equivalent</dfn> if they have the same truth set.</p>
     <p> [In <a href="https://eecoppock.info/bootcamp/semantics-boot-camp.pdf" target="_blank">formal semantics</a> land
       they don't like coming up with all these letters for predicates so they made the notation \(\lambda x\mathpunct.
-      x\geq3\) for <dfn>anonymous predicates</dfn>.] </p>
+      x\geq3\) for <dfn>anonymous predicates</dfn>. You could use this to make a function that gives you another
+      function, like \(\operatorname{pow}(p)=\lambda x\mathpunct. x^p\) which you could use as e.g.
+      \(\operatorname{pow}(3)(4)=4^3\).] </p>
     <p> Some sentences, such as "there exist an animal with exactly 54 legs", require us to go up to every animal and
       ask it <q>hey animal do u have exactly 54 legs</q>, and then we can stop when/if any of them says <q>yea i do
         :3</q>. To express this we need the <dfn>existential quantifier</dfn> \(\exists\). We could write our sentence
@@ -443,7 +452,7 @@
       \(\alpha\)<br /> iff \(\beta\)<br /> \(\vdots\)<br /> iff \(q\). </blockquote>
   </section>
   <section>
-    <h2 id="16"><code>1.6</code> proofs involving quantifers</h2>
+    <h2 id="16"><code>1.6</code> proofs involving quantifiers</h2>
     <blockquote><dfn>Direct proof of \(\forall x\mathpunct. p(x)\)</dfn><br /> <b>Proof.</b><br /> Let \(x\) be an
       arbitrary object in the universe.<br /> \(\vdots\)<br /> \(p(x)\).<br /> Therefore, \(\forall x\mathpunct. p(x)\).
     </blockquote>
@@ -455,14 +464,96 @@
     <p>etc etc etc</p>
   </section>
   <hr />
+  <h1 id="2"><code>2</code> sets and induction</h1>
+  <section>
+    <h2 id="21"><code>2.1</code> sets</h2>
+    <p>A <dfn>set</dfn> is a bunch of elements whatever you know this already.</p>
+    <p>We can define a set using the fact that there is some property all the elements satisfy. If every element
+      satisfies \(p\), we can write the set as \(\set{x:p(x)}\). The part before the \(:\) can also be more complicated,
+      like for \(3\mathbf Z=\set{3z:z\in\mathbf Z}\) or \(E=\set{n\in\mathbf N:2\mid n}\)</p>
+    <p>The <dfn>empty set</dfn> \(\emptyset=\set{ }\) is the set with no elements.</p>
+    <p>\(A\) is a <dfn>subset</dfn> of \(B\) (which we write as \(A\subseteq B\)) if \(\forall a\in A\mathpunct. a\in
+      B\). To prove \(A\subseteq B\) we can just prove its definition and use <a href="#16">1.6</a>. If \(A\) is not a
+      subset of \(B\) we write \(A\not\subseteq B\).</p>
+    <p>Two sets are equal iff they are subsets of each other (because then neither can contain any elements the other
+      doesn't).</p>
+    <p>\(A\) is a <dfn>proper subset</dfn> (which we write as \(A\subset B\)) of \(B\) if \(A\subseteq B\) but \(A\neq
+      B\). If \(A\) is not a proper subset of \(B\) (but also not a subset, as otherwise we could write \(A=B\)), we
+      write \(A\not\subset B\).</p>
+    <p>The empty set is a subset of every set \(A\), because it has no elements that aren't in \(A\) (because it has no
+      elements at all!).</p>
+    <p>The <dfn>power set</dfn> of \(A\), \(\mathcal P(A)\), is the set of all of \(A\)'s subsets. Regardless of what
+      \(A\) is,</p>
+    <ul>
+      <li>\(\emptyset\subseteq A\)</li>
+      <li>\(\emptyset\in\mathcal P(A)\)</li>
+      <li>\(\set{\emptyset}\subseteq\mathcal P(A)\)</li>
+      <li>\(\emptyset\subseteq\mathcal P(A)\)</li>
+    </ul>
+    <p>If \(A\) has \(n\) elements, \(\mathcal P(A)\) has \(2^n\) elements, which is why sometimes the power set is just
+      written as \(2^A\).</p>
+  </section>
+  <section>
+    <h2 id="22"><code>2.2</code> set operations</h2>
+    <p>If \(A\) and \(B\) are sets,</p>
+    <ul>
+      <li>their <dfn>union</dfn> \(A\cup B\) is \(\set{x:x\in A\lor x\in B}\)</li>
+      <li>their <dfn>intersection</dfn> \(A\cap B\) is \(\set{x:x\in A\land x\in B}\)</li>
+      <li>their <dfn>difference</dfn> \(A\setminus B\) is \(\set{x:x\in A\land x\not\in B}\)</li>
+      <li>\(A\) and \(B\) are <dfn>disjoint</dfn> if \(A\cap B=\emptyset\)</li>
+    </ul>
+    <p>\(\cap\) and \(\cup\) are commutative and associative and distributive.</p>
+    <p>The <dfn>complement</dfn> of \(A\) wrt a universe \(U\) is \(U\setminus A\). We write it as \(A^\complement\) or
+      \(A'\).</p>
+    <p>An <dfn>(ordered) \(n\)-tuple</dfn> is a container of \(n\) things, \((a_1, a_2, ..., a_n)\). Ordered pairs for
+      coordinates are examples of tuples. Two tuples \(a\) and \(b\) are equal if they have the same length \(n\) and
+      \(\forall i\in[0, n]\cup\mathbf N\mathpunct. a_i=b_i\). (This is where the "ordered" comes from.)</p>
+    <p>We can construct a set of pairs by using the <dfn>cross product</dfn> \(A\times B\) of two sets. The cross
+      product is defined as \(\set{(a, b):a\in A\land b\in B}\). \(\times\) is <i>not</i> commutative: \(A\times B\neq
+      B\times A\).</p>
+  </section>
+  <section>
+    <h2 id="23"><code>2.3</code> set families</h2>
+    <p>A <dfn>family</dfn> is a set of sets. Families are given cursive capital letters as names, like \(\mathscr A\).
+    </p>
+    <p>The <dfn>union over \(\mathcal A\)</dfn> is \(\bigcup_{\textcolor{green}A\in\mathscr
+      A}\textcolor{green}A=\set{x:\exists\textcolor{SkyBlue}A\in\mathscr A\mathpunct.
+      x\in\textcolor{SkyBlue}A}\). Note that the two regular \(A\)s on each side of that are doing different things.
+      \(\textcolor{green}{\text{One}}\) is acting as a
+      dummy variable for the \(\bigcup\), \(\textcolor{SkyBlue}{\text{the other}}\) is bound by the \(\exists\).</p>
+    <p>Likewise the <dfn>intersection over \(\mathcal A\)</dfn> is \(\bigcup_{A\in\mathscr A}A=\set{x:\forall
+      A\in\mathscr A\mathpunct. x\in A}\).</p>
+  </section>
+  <section>
+    <h2 id="24"><code>2.4</code> induction</h2>
+    <h3>the natural numbers / peano's axioms</h3>
+    <ol>
+      <li>1 is a natural number</li>
+      <li>every natural number \(n\) has a <dfn>successor</dfn> \(n+1\), which is a natural number</li>
+      <li>no two natural numbers have the same successor</li>
+      <li>1 is not the successor of any natural number</li>
+      <li><img style="vertical-align: top" src="imgs/peano-axiom-5.png" /></li>
+      <!-- TODO rephrase^ -->
+    </ol>
+    <h3>pmi (<dfn>principle of mathematical induction</dfn>)</h3>
+    <p>Let \(S\) be a subset of \(\mathbf N\) such that</p>
+    <ol>
+      <li>\(1\in S\)</li>
+      <li>\(\forall n\in\mathbf N\mathpunct. (n\in S\Rightarrow n+1\in S)\)</li>
+    </ol>
+    <p>Then \(S=\mathbf N\).</p>
+    <p>A set is <dfn>inductive</dfn> if it only meets requirement 2. For example \(\set{5, 6, 7, ...}\) is inductive.
+    </p>
+  </section>
+  <hr />
   <h1 id="4"><code>4</code> functions</h1>
   <section>
     <h2 id="41"><code>4.1</code> what is function ?</h2>
     <p>A relation \(f\) is a <dfn>function from \(A\) to \(B\)</dfn> if</p>
-    <ol>
+    <ul>
       <li>\(\operatorname{Dom}f=A\)</li>
       <li>\((x, y)\in f\land(x, z)\in f\Rightarrow y=z\) <em>every input has exactly one output</em></li>
-    </ol>
+    </ul>
     <p> If \(f\) is in fact a function we write \(f:A\to B\) and say "\(f\) maps \(A\) to \(B\)". The
       <dfn>codomain</dfn> is \(B\) which might be a superset of \(\operatorname{Rng}f\). For example the range of
       \(f(x)=\cos x\) is \([-1, 1]\) but its codomain could be \(\mathbf R\) since \([-1, 1]\subseteq\mathbf R\).
@@ -477,28 +568,34 @@
       \(\forall x\in A\mathpunct. I_A(x)=i(x)=x\)]. </p>
     <p>If there is some universe \(U\), then for all \(A\subseteq U\) the <dfn>characteristic function of \(A\)</dfn>
       \(\chi_A:U\to\{0, 1\}\) is</p>
-    <p> \[ \forall x\in U\mathpunct. \chi_A(x)=\begin{cases} 1&\text{if }x\in A\\ 0&\text{if }x\not\in A \end{cases} \]
+    <p> \[ \forall x\in U\mathpunct. \chi_A(x)=\begin{cases} 1&\text{if }x\in A\\ 0&\text{if }x\not\in A \end{cases}
+      \]
     </p>
-    <p> The <dfn>floor function</dfn> \(\lfloor\mathord\cdot\rfloor:\mathbf R\to\mathbf Z\) maps each real number \(x\)
+    <p> The <dfn>floor function</dfn> \(\lfloor\mathord\cdot\rfloor:\mathbf R\to\mathbf Z\) maps each real number
+      \(x\)
       to its integer part, i.e. the greatest integer \(n\leq x\). \(\lfloor x\rfloor\) is like "always round down".
       Similarly there's the <dfn>ceiling</dfn> \(\lceil x\rceil=\lfloor x\rfloor+1\). </p>
     <p> If \(R\) is an equivalence relation on \(A\), the <dfn>canonical map</dfn> \(f:A\to A/R\) maps each \(a\in A\)
       to its equivalence class \(\bar a\). </p>
-    <p> A function is <dfn>not well defined</dfn> if it isn't actually a function at all (e.g. if it fails the vertical
+    <p> A function is <dfn>not well defined</dfn> if it isn't actually a function at all (e.g. if it fails the
+      vertical
       line test). </p>
   </section>
   <section>
     <h2 id="42"><code>4.2</code> making new functions</h2>
     <p>The <dfn>inverse</dfn> of a function \(f:A\to B\) is the function \(f^{-1}:B\to A\).</p>
     <p>The <dfn>composition</dfn> of two functions \(f:A\to B\) and \(g:B\to C\) is the <b><i>relation</i></b></p>
-    <p> \[ g\circ f=\set{(x, z)|\exists y\in B\mathpunct. (x, y)\in f\land(y, z)\in g} \] </p>
-    <p> which is not guaranteed to be a function! To reduce confusion I like reading \(g\circ f\) as "\(g\) after \(f\)"
+    <p> \[ g\circ f=\set{(x, z):\exists y\in B\mathpunct. (x, y)\in f\land(y, z)\in g} \] </p>
+    <p> which is not guaranteed to be a function! To reduce confusion I like reading \(g\circ f\) as "\(g\) after
+      \(f\)"
       because you do \(g\) after you do \(f\). When giving \(g\circ f\) an input we can write either \([g\circ f](x)\)
       or \(g(f(x))\). </p>
-    <p> Composition is not commutative: if they both even exist, \(g\circ f\) and \(f\circ g\) are not guaranteed to be
-      the same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\).Both of these
+    <p> Composition is not commutative: if they both even exist, \(g\circ f\) and \(f\circ g\) are not guaranteed to
+      be
+      the same. Composition <i>is</i> associative: \(h\circ(g\circ f)=(h\circ g)\circ f=h\circ g\circ f\).Both of
+      these
       are consequences of functions being fancy relations. </p>
-    <p> If \(D\subseteq A\) the <dfn>restriction of \(f\) to \(D\)</dfn> is the function \(f|_D=\set{(x, y)\in f|x\in
+    <p> If \(D\subseteq A\) the <dfn>restriction of \(f\) to \(D\)</dfn> is the function \(f|_D=\set{(x, y)\in f:x\in
       D}\). </p>
     <p> A function \(f:A\to B\) is <dfn>increasing</dfn> if \(\forall x, y\in A\mathpunct. x&lt;y\Rightarrow
       f(x)&lt;f(y)\) and <dfn>decreasing</dfn> if \(\forall x, y\in A\mathpunct. x&gt;y\Rightarrow f(x)&gt;f(y)\). If
@@ -506,19 +603,23 @@
   </section>
   <section>
     <h2 id="43"><code>4.3</code> injective and surjective functions</h2>
-    <p> A function \(f:A\to B\) is <dfn>surjective</dfn> or <dfn>onto \(B\)</dfn> if \(\operatorname{Rng}f=B\). If \(f\)
+    <p> A function \(f:A\to B\) is <dfn>surjective</dfn> or <dfn>onto \(B\)</dfn> if \(\operatorname{Rng}f=B\). If
+      \(f\)
       is a surjection we write \(f:A\twoheadrightarrow B\) [or, if you really like the book,
       \(f:A\stackrel{\text{onto}}{\to}B\)]. </p>
     <p> \(f\) is <dfn>injective</dfn> or <dfn>one-to-one</dfn> if \(\forall x, y\in A\mathpunct: f(x)=f(y)\Rightarrow
-      x=y\) <em>it passes the horizontal line test</em>. If \(f\) is an injection we write \(f:A\hookrightarrow B\) [or,
+      x=y\) <em>it passes the horizontal line test</em>. If \(f\) is an injection we write \(f:A\hookrightarrow B\)
+      [or,
       if you really like the book, \(f:A\stackrel{1-1}{\to}B\)]. </p>
   </section>
   <section>
     <h2 id="44"><code>4.4</code> inverse functions</h2>
     <p>\(f\) is <dfn>bijective</dfn> or a <dfn>one-to-one correspondence</dfn> if it is both injective and surjective.
-      Only bijective functions have inverses, but to prove \(f^{-1}\) is a function you only need to show that \(f\) is
+      Only bijective functions have inverses, but to prove \(f^{-1}\) is a function you only need to show that \(f\)
+      is
       a function and \(f\circ f^{-1}=I_B\) and \(f^{-1}\circ f=I_A\). </p>
-    <p>If \(A\) is a nonempty set, a function \(p:A\to A\) is a <dfn>permutation of \(A\)</dfn> if it is bijective.</p>
+    <p>If \(A\) is a nonempty set, a function \(p:A\to A\) is a <dfn>permutation of \(A\)</dfn> if it is bijective.
+    </p>
   </section>
   <script> temml.renderMathInElement(document.body, {trust: true}); </script>
 </body>

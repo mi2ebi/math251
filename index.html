@@ -179,6 +179,58 @@
     a.redlink {
       color: #f66;
     }
+
+    @media print {
+      html {
+        color: black;
+        background: white;
+      }
+
+      dfn {
+        color: deeppink;
+      }
+
+      em {
+        color: green;
+      }
+
+      h2 {
+        background: #ddd;
+      }
+
+      hr,
+      th {
+        border-color: black;
+      }
+
+      q {
+        color: blueviolet;
+      }
+
+      a {
+        color: blue;
+      }
+
+      a.redlink {
+        color: red;
+      }
+
+      mi[style="color: rgb(255, 255, 0);"] {
+        color: darkgoldenrod !important;
+      }
+
+      mi[style="color: rgb(255, 153, 153);"] {
+        color: darksalmon !important;
+      }
+
+      mi[style="color: rgb(191, 255, 0);"] {
+        color: olivedrab !important;
+      }
+
+      :is(mi, mtext)[style="color: rgb(0, 255, 0);"] {
+        color: green !important;
+      }
+    }
   </style>
   <script src="temml/dist/temml.min.js"></script>
 </head>
